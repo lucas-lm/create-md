@@ -6,10 +6,16 @@
       { "name": "github username", "default": "create_md.github_username"}, 
       { "name": "github repo name", "default": "create_md.github_repo"}, 
       { "name": "title", "default": "name"}, 
-      { "name": "headline", "default": "description"}],
+      { "name": "headline", "default": "description"},
+      { "name": "banner url"}
+    ],
     "about": [
       {"name": "homepage", "default": "homepage"},
       {"name": "long description"}
+    ],
+    "contributing": [
+      {"name":"github username", "default": "create_md.github_username"}, 
+      {"name":"github repo name", "default": "create_md.github_repo"}
     ],
     "author": [
       {"name": "author name", "default": "author.name"}, 
@@ -19,6 +25,9 @@
       {"name": "twitter username"}, {"name": "linkedin username"}
     ],
     "prerequisites": [{"name": "node version"}, {"name": "npm version"}],
-    "license": [{"name": "license", "default": "license"}]
+    "license": [
+      {"name": "license", "default": "license"}, 
+      {"name": "author name", "default": "author.name"}
+    ]
   }
 }

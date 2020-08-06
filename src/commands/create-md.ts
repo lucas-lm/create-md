@@ -20,12 +20,12 @@ const command: GluegunCommand = {
     const target = `./${filename}` // output
 
     let pkg
+    
     try {
       pkg = require(resolve(filesystem.cwd(), 'package.json'))
     } catch (error) {
-      print.warning('ATTENTION!')
-      print.warning('No package.json found here. Answers inference will not be available.')
-      print.warning('!!!')
+      print.warning('!!!ATTENTION!!!')
+      print.warning('No package.json found here. Answers inference will not be available!')
     }
 
     // get template info: props, sections...

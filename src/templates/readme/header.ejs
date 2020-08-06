@@ -1,9 +1,11 @@
-<!-- ![banner](media/banner.png) -->
+<% if (props['banner url']) { -%>
+  ![banner](<%= props['banner url'] -%>)
 
-# <%- props.title %>
+<% } -%>
+# <%= props.title %>
 
-> <%- props.headline %>
+> <%= props.headline %>
 
-![GitHub last commit](https://img.shields.io/github/last-commit/<%- props['github username'] %>/<%- props['github repo name'] %>)
-![license](https://img.shields.io/github/license/<%- props['github username'] %>/<%- props['github repo name'] %>)
-![GitHub repo size](https://img.shields.io/github/repo-size/<%- props['github username'] %>/<%- props['github repo name'] %>)
+![GitHub last commit](https://img.shields.io/github/last-commit/<%= props['github username'] %>/<%- props['github repo name'] %>)
+![license](https://img.shields.io/github/license/<%= props['github username'] %>/<%- props['github repo name'] %>)
+![GitHub repo size](https://img.shields.io/github/repo-size/<%= props['github username'] %>/<%- props['github repo name'] %>)

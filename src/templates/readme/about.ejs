@@ -1,3 +1,6 @@
 ## About
 
-<%= props['long description'] %>
+<% if (props['homepage']) { -%>
+  [🏠 Homepage](<%= props['homepage'] -%>)
+<% } -%>
+<%= props['long description'] -%>
