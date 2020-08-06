@@ -1,5 +1,5 @@
 import { GluegunCommand } from 'gluegun'
-import { parse } from 'path'
+import { parse, resolve } from 'path'
 
 interface Prop {
   name: string,
@@ -9,7 +9,7 @@ interface Prop {
 const command: GluegunCommand = {
   name: 'create-md',
   run: async toolbox => {
-    const { print, prompt, template: {generate}, parameters, getTemplate, selectSections } = toolbox
+    const { print, prompt, template: {generate}, parameters, getTemplate, selectSections, filesystem } = toolbox
     
     const { first='readme', options } = parameters
 
@@ -21,7 +21,8 @@ const command: GluegunCommand = {
 
     let pkg
     try {
-      pkg = require('package.json')
+      print.info(filesystem.cwd())
+      pkg = require(resolve(filesystem.cwd(), 'package.json'))
     } catch (error) {
       print.warning('ATTENTION!')
       print.warning('No package.json found here. Answers inference will not be available.')
