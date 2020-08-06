@@ -21,7 +21,6 @@ const command: GluegunCommand = {
 
     let pkg
     try {
-      print.info(filesystem.cwd())
       pkg = require(resolve(filesystem.cwd(), 'package.json'))
     } catch (error) {
       print.warning('ATTENTION!')
