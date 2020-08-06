@@ -1,0 +1,13 @@
+## Author
+
+**<%= props['author name'] %>** <%= props['author email'] %>
+<% if (props['author website']) { %>* Website: <%= props['author website'] %><% } %>
+<% if (props['github username']) { %>
+* GitHub: [@<%= props['github username'] %>](https://github.com/<%= props['github username'] %>)
+<% } %>
+<% if (props['linkedin username']) { %>
+* LinkedIn: [@<%= props['linkedin username'] %>](https://linkedin.com/in/<%= props['linkedin username'] %>)
+<% } %>
+<% if (props['twitter username']) { %>
+* Twitter: [@<%= props['twitter username'] %>](https://twitter.com/<%= props['twitter username'] %>)
+<% } %>

@@ -1,1 +1,3 @@
-<% props.sections.forEach(function(section){ %><%- include(section, {props: props[section]}) %><% }) %>
+<% props.sections.forEach(function(section){ %>
+<%- include(`${props.template}/${section}`, {props: props[section]}) %>
+<% }) %>

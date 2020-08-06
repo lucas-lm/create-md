@@ -1,8 +1,6 @@
-import { GluegunToolbox, print } from 'gluegun'
-import { parse } from 'path'
+import { GluegunToolbox } from 'gluegun'
 
 interface Template {
-  type: string,
   name: string
 }
 
@@ -12,23 +10,11 @@ interface TemplateMetadata {
   props: string[]
 }
 
-const getTemplateDir = (toolbox: GluegunToolbox, {type, name}: Template) => {
+const getTemplateDir = (toolbox: GluegunToolbox, {name}: Template) => {
   const { filesystem } = toolbox
-  const templateDir = filesystem.resolve(__dirname, '..', 'templates', type, name)
-  if (!filesystem.exists(templateDir)) throw new Error(`${type} is not a template type`)
+  const templateDir = filesystem.resolve(__dirname, '..', 'templates', name)
+  if (!filesystem.exists(templateDir)) throw new Error(`${name} is not a template`)
   return templateDir
-}
-
-const getSections = ( toolbox: GluegunToolbox, template: Template ) => {
-  const { filesystem } = toolbox
-
-  const templateDir = getTemplateDir(toolbox, template)
-
-  return filesystem
-    .list(templateDir)
-    .map(file => parse(file))
-    .filter(({ name, ext }) => ext === '.ejs' && name !== 'index')
-    .map(({ name }) => name)
 }
 
 const getTemplateMetadata = (toolbox: GluegunToolbox, template: Template) => {
@@ -39,10 +25,8 @@ const getTemplateMetadata = (toolbox: GluegunToolbox, template: Template) => {
 
 module.exports = (toolbox: GluegunToolbox) => {
   toolbox.getTemplate = (template: Template) => {
-    const sections = getSections(toolbox, template)
     const meta = getTemplateMetadata(toolbox, template)
-    print.debug(meta)
-    return {sections, ...meta}
+    return meta
   }
 
   toolbox.selectSections = async (sections: string[]) => {
@@ -61,11 +45,4 @@ module.exports = (toolbox: GluegunToolbox) => {
     return selectSections
   }
 
-  // enable this if you want to read configuration in from
-  // the current folder's package.json (in a "create-md" property),
-  // create-md.config.json, etc.
-  // toolbox.config = {
-  //   ...toolbox.config,
-  //   ...toolbox.config.loadConfig(process.cwd(), "create-md")
-  // }
 }

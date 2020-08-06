@@ -1,0 +1,24 @@
+{
+  "sections": ["header", "about", "prerequisites", "contributing", "author", "license"],
+  "defaultSections": ["header", "about", "contributing", "author", "license"],
+  "props": {
+    "header": [
+      { "name": "github username", "default": "create_md.github_username"}, 
+      { "name": "github repo name", "default": "create_md.github_repo"}, 
+      { "name": "title", "default": "name"}, 
+      { "name": "headline", "default": "description"}],
+    "about": [
+      {"name": "homepage", "default": "homepage"},
+      {"name": "long description"}
+    ],
+    "author": [
+      {"name": "author name", "default": "author.name"}, 
+      {"name":"author website", "default": "author.url"}, 
+      {"name":"author email", "default": "author.email"}, 
+      {"name":"github username", "default": "create_md.github_username"}, 
+      {"name": "twitter username"}, {"name": "linkedin username"}
+    ],
+    "prerequisites": [{"name": "node version"}, {"name": "npm version"}],
+    "license": [{"name": "license", "default": "license"}]
+  }
+}
