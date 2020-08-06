@@ -1,0 +1,6 @@
+{
+  "defaultSections": ["about", "usage"],
+  "props": {
+    "about": ["project name"]
+  }
+}
