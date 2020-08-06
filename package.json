@@ -1,7 +1,7 @@
 {
   "name": "create-md",
   "version": "0.0.3",
-  "description": "Create docs with 3 words",
+  "description": "Create docs with a simple command",
   "author": {
     "email": "lucas-m@outlook.com",
     "name": "Lucas Miranda",
@@ -9,7 +9,11 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/lucas-lm/create-md.git"
+  },
+  "create_md": {
+    "github_username": "lucas-lm",
+    "github_repo": "create-md"
   },
   "keywords": [
     "CLI",
@@ -54,9 +58,5 @@
   "prettier": {
     "semi": false,
     "singleQuote": true
-  },
-  "create_md": {
-    "github_username": "lucas-lm",
-    "github_repo": "create-md"
   }
 }
