@@ -7,6 +7,7 @@ interface Template {
 }
 
 interface TemplateMetadata {
+  sections: string[],
   defaultSections: string[],
   props: string[]
 }
@@ -40,7 +41,7 @@ module.exports = (toolbox: GluegunToolbox) => {
   toolbox.getTemplate = (template: Template) => {
     const sections = getSections(toolbox, template)
     const meta = getTemplateMetadata(toolbox, template)
-    print.debug(sections)
+    print.debug(meta)
     return {sections, ...meta}
   }
 

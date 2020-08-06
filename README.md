@@ -1,9 +1,15 @@
 
+<!-- ![banner](media/banner.png) -->
+
+# create-md
+
+## docs with 3 magic words
+
 ## About
 
 Long desc
 
-Lol
+create-md
 
 ## Usage
 

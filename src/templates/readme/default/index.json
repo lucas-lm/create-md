@@ -1,6 +1,8 @@
 {
+  "sections": ["header", "about", "usage"],
   "defaultSections": ["about", "usage"],
   "props": {
-    "about": ["project name"]
+    "header": ["title", "headline"],
+    "about": ["project name", "long description"]
   }
 }
