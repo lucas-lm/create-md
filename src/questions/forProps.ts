@@ -8,7 +8,7 @@ interface Prop {
 
 const forProps = (props: Prop[], pkg: any, section?: string) => {
   const sectionLabel = section ? `Section ${section}` : ''
-  
+
   const questions = props.map((prop) => ({
     type: 'input',
     name: prop.name,

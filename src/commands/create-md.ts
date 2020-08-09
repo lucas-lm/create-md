@@ -17,13 +17,17 @@ import { forSections, forProps } from "../questions";
   search: {
     here: (file: string) => Boolean
     forData: () => any
+    forTemplate: (template: any) => any
+  },
+  extractData: {
+    fromTemplate: (template: any) => any
   }
  }
 
 const command: GluegunCommand<TContext> = {
   name: 'create-md',
   run: async toolbox => {
-    const { print, prompt, template: {generate}, parameters, getTemplate, search } = toolbox
+    const { print, prompt, template: {generate}, parameters, search, extractData } = toolbox
     
     
     const { first='readme', options } = parameters
@@ -41,7 +45,7 @@ const command: GluegunCommand<TContext> = {
     const pkg = search.forData()
 
     // get template info: props, sections...
-    const templateInfo = getTemplate({name: first})
+    const templateInfo = extractData.fromTemplate({name: first})
     if (templateInfo.isFlat) {
 
       const questions = forProps(templateInfo.props, pkg)
