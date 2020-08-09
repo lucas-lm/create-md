@@ -17,15 +17,15 @@ interface TemplateMetadata {
 //   return templateDir
 // }
 
-const getTemplateMetadata = (toolbox: GluegunToolbox, template: Template) => {
-  const templateDir = toolbox.search.forTemplate(template)
-  const metadata = require(templateDir) as TemplateMetadata
-  return metadata
-}
+// const getTemplateMetadata = (toolbox: GluegunToolbox, template: Template) => {
+//   const templateDir = toolbox.search.forTemplate(template)
+//   const metadata = require(templateDir) as TemplateMetadata
+//   return metadata
+// }
 
 module.exports = (toolbox: GluegunToolbox) => {
   toolbox.getTemplate = (template: Template) => {
-    const meta = getTemplateMetadata(toolbox, template)
+    const meta = toolbox.extractData.fromTemplate(template)
     return meta
   }
 
@@ -36,12 +36,11 @@ module.exports = (toolbox: GluegunToolbox) => {
     },
 
     forData() {
-      const { filesystem, print } = toolbox
+      const { filesystem } = toolbox
       try {
         return require(filesystem.resolve(filesystem.cwd(), 'package.json'))
       } catch (error) {
-        print.warning('!!!ATTENTION!!!')
-        print.warning('No package.json found here. Answers inference will not be available!')
+
         return null
       }
     },
@@ -50,6 +49,17 @@ module.exports = (toolbox: GluegunToolbox) => {
       const { filesystem } = toolbox
       const templateDir = filesystem.resolve(__dirname, '..', 'templates', name)
       return filesystem.exists(templateDir) ? templateDir : null
+    }
+  }
+
+  toolbox.extractData = {
+    fromTemplate(template: Template) {
+      const { search } = toolbox
+
+      const templateDir = search.forTemplate(template)
+      if (!templateDir) throw new Error('Template not found')
+      const templateMetadata = require(templateDir) as TemplateMetadata
+      return templateMetadata
     }
   }
 
