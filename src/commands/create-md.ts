@@ -1,5 +1,5 @@
 import { GluegunCommand, GluegunToolbox } from 'gluegun'
-import { parse, resolve } from 'path'
+import { parse } from 'path'
 import { forSections, forProps } from "../questions";
 
 /**
@@ -16,32 +16,29 @@ import { forSections, forProps } from "../questions";
  interface TContext extends GluegunToolbox {
   search: {
     here: (file: string) => Boolean
+    forData: () => any
   }
  }
 
 const command: GluegunCommand<TContext> = {
   name: 'create-md',
   run: async toolbox => {
-    const { print, prompt, template: {generate}, parameters, getTemplate, filesystem, search } = toolbox
+    const { print, prompt, template: {generate}, parameters, getTemplate, search } = toolbox
     
-    print.info(search.here('sapo.txt'))
-
+    
     const { first='readme', options } = parameters
-
+    
     let { ext='.md', name=''} = options
     ext = ext[0] && ext[0] !== '.' ? `.${ext}` : ext
-
+    
     const filename = name ? `${name}${ext}` : parse(`${first}${ext}`).base
     const target = `./${filename}` // output
-
-    let pkg
+    // if (search.here(target)) {
+    //   const wantOverwrite = await prompt.confirm('Overwrite?', false)
+    //   if (!wantOverwrite) return
+    // } 
     
-    try {
-      pkg = require(resolve(filesystem.cwd(), 'package.json'))
-    } catch (error) {
-      print.warning('!!!ATTENTION!!!')
-      print.warning('No package.json found here. Answers inference will not be available!')
-    }
+    const pkg = search.forData()
 
     // get template info: props, sections...
     const templateInfo = getTemplate({name: first})

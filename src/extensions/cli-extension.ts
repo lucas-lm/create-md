@@ -1,5 +1,5 @@
 import { GluegunToolbox } from 'gluegun'
-import * as path from 'path'
+import { resolve } from 'path'
 
 interface Template {
   name: string
@@ -33,7 +33,18 @@ module.exports = (toolbox: GluegunToolbox) => {
   toolbox.search = {
     here(file: string) {
       const { filesystem } = toolbox
-      return filesystem.exists(path.resolve(filesystem.cwd(), file))
+      return filesystem.exists(resolve(filesystem.cwd(), file))
+    },
+
+    forData() {
+      const { filesystem, print } = toolbox
+      try {
+        return require(resolve(filesystem.cwd(), 'package.json'))
+      } catch (error) {
+        print.warning('!!!ATTENTION!!!')
+        print.warning('No package.json found here. Answers inference will not be available!')
+        return null
+      }
     }
   }
 
