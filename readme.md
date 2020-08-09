@@ -41,6 +41,8 @@ Creating nice readmes, license and other docs for applications can be really bor
 
 ## :zap: Quick start
 
+There is no need to install the package. With modern versions of yarn and npm there is no need to install the package. You can run it directly with `yarn create` and `npm init`.
+
 If you use yarn:
 
 ```sh
