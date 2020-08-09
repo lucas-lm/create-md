@@ -46,7 +46,7 @@ module.exports = (toolbox: GluegunToolbox) => {
   }
 
   toolbox.parse = {
-    extension(extension?: string) {
+    fileExtension(extension?: string) {
       if (!extension) return null
       return extension[0] && extension[0] !== '.' ? `.${extension}` : extension
     }

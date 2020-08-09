@@ -23,7 +23,7 @@ import * as path from 'path'
     fromTemplate: (template: any) => any
   },
   parse: {
-    extension: (string) => string
+    fileExtension: (string) => string
   }
  }
 
@@ -35,7 +35,7 @@ const command: GluegunCommand<TContext> = {
     const { first='readme', options } = parameters
     
     let { ext='.md', name=''} = options
-    ext = parse.extension(ext)
+    ext = parse.fileExtension(ext)
     
     const filename = name ? `${name}${ext}` : path.parse(`${first}${ext}`).base
     const target = `./${filename}` // output
