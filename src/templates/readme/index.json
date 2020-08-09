@@ -7,7 +7,7 @@
       { "name": "github repo name", "default": "create_md.github_repo"}, 
       { "name": "title", "default": "name"}, 
       { "name": "headline", "default": "description"},
-      { "name": "banner url"}
+      { "name": "banner url", "description": "banner or logo url"}
     ],
     "about": [
       {"name": "homepage", "default": "homepage"},

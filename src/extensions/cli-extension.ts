@@ -1,4 +1,5 @@
 import { GluegunToolbox } from 'gluegun'
+import { forSections } from "../questions";
 
 interface Template {
   name: string
@@ -31,16 +32,8 @@ module.exports = (toolbox: GluegunToolbox) => {
 
   toolbox.selectSections = async (sections: string[]) => {
     const { prompt } = toolbox
-    const message = `Select sections you want in your md.
-    Press [Space bar] to select and [Enter] to submit your selection.
-    `
 
-    const selectSections = await prompt.ask([{
-      type: 'multiselect',
-      name: 'selectedSections',
-      message,
-      choices: sections
-    }])
+    const selectSections = await prompt.ask(forSections(sections))
 
     return selectSections
   }

@@ -1,10 +1,23 @@
 import { GluegunCommand } from 'gluegun'
 import { parse, resolve } from 'path'
+import { forProps } from "../questions";
 
-interface Prop {
-  name: string,
-  default?: string
-}
+/**
+ * --- Process ---
+ * 1. Confirm overwrites if needed
+ * 2. Set name, extension and output directory path
+ * 3. Search for project info
+ * 4. Build questions based on given template 
+ * 5. Ask user questions
+ * 6. Generate final file
+ *
+ */
+
+// interface Prop {
+//   name: string,
+//   default?: string,
+//   description?: string
+// }
 
 const command: GluegunCommand = {
   name: 'create-md',
@@ -31,11 +44,8 @@ const command: GluegunCommand = {
     // get template info: props, sections...
     const templateInfo = getTemplate({name: first})
     if (templateInfo.isFlat) {
-      const questions = templateInfo.props.map((prop: string) => ({
-        type: 'input',
-        name: prop,
-        message: prop
-      }))
+
+      const questions = forProps(templateInfo.props, pkg)
       const props = await prompt.ask(questions)
       return generate({ template: `${first}/index.ejs`, target, props })
       .then(() => {
@@ -62,17 +72,19 @@ const command: GluegunCommand = {
       if (!sectionProps) continue // skip questionaire if no props needed
       if (sectionProps.includes('sections')) throw new Error('sections cannot be a prop')
 
-      const questions = sectionProps.map((prop: Prop) => ({
-        type: 'input',
-        name: prop.name,
-        message: `Section ${section} - ${prop.name}`,
-        initial: () => {
-          if (!prop.default || !pkg) return
-          return prop.default
-            .split('.')
-            .reduce((prev, curr) => prev[curr], pkg)
-        } 
-      }))
+      // const questions = sectionProps.map((prop: Prop) => ({
+      //   type: 'input',
+      //   name: prop.name,
+      //   message: `Section ${section} - ${prop.description || prop.name}`,
+      //   initial: () => {
+      //     if (!prop.default || !pkg) return
+      //     return prop.default
+      //       .split('.')
+      //       .reduce((prev, curr) => prev[curr], pkg)
+      //   } 
+      // }))
+
+      const questions = forProps(sectionProps, pkg, section)
 
       const { selectedSections, ...rest} = await prompt.ask(questions)
       props[section] = rest

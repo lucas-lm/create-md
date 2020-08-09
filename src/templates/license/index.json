@@ -1,4 +1,4 @@
 {
   "isFlat": true,
-  "props": ["name"]
+  "props": [{"name": "name", "default": "author.name", "description": "Author full name"}]
 }
