@@ -1,6 +1,6 @@
 import { GluegunCommand, GluegunToolbox } from 'gluegun'
-import { parse } from 'path'
 import { forSections, forProps } from "../questions";
+import * as path from 'path'
 
 /**
  * --- Process ---
@@ -21,21 +21,23 @@ import { forSections, forProps } from "../questions";
   },
   extractData: {
     fromTemplate: (template: any) => any
+  },
+  parse: {
+    extension: (string) => string
   }
  }
 
 const command: GluegunCommand<TContext> = {
   name: 'create-md',
   run: async toolbox => {
-    const { print, prompt, template: {generate}, parameters, search, extractData } = toolbox
-    
+    const { print, prompt, template: {generate}, parameters, search, extractData, parse } = toolbox
     
     const { first='readme', options } = parameters
     
     let { ext='.md', name=''} = options
-    ext = ext[0] && ext[0] !== '.' ? `.${ext}` : ext
+    ext = parse.extension(ext)
     
-    const filename = name ? `${name}${ext}` : parse(`${first}${ext}`).base
+    const filename = name ? `${name}${ext}` : path.parse(`${first}${ext}`).base
     const target = `./${filename}` // output
     // if (search.here(target)) {
     //   const wantOverwrite = await prompt.confirm('Overwrite?', false)
