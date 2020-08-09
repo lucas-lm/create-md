@@ -1,5 +1,5 @@
 import { GluegunToolbox } from 'gluegun'
-import { forSections } from "../questions";
+import * as path from 'path'
 
 interface Template {
   name: string
@@ -30,12 +30,11 @@ module.exports = (toolbox: GluegunToolbox) => {
     return meta
   }
 
-  toolbox.selectSections = async (sections: string[]) => {
-    const { prompt } = toolbox
-
-    const selectSections = await prompt.ask(forSections(sections))
-
-    return selectSections
+  toolbox.search = {
+    here(file: string) {
+      const { filesystem } = toolbox
+      return filesystem.exists(path.resolve(filesystem.cwd(), file))
+    }
   }
 
 }

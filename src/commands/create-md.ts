@@ -1,6 +1,6 @@
-import { GluegunCommand } from 'gluegun'
+import { GluegunCommand, GluegunToolbox } from 'gluegun'
 import { parse, resolve } from 'path'
-import { forProps } from "../questions";
+import { forSections, forProps } from "../questions";
 
 /**
  * --- Process ---
@@ -13,17 +13,19 @@ import { forProps } from "../questions";
  *
  */
 
-// interface Prop {
-//   name: string,
-//   default?: string,
-//   description?: string
-// }
+ interface TContext extends GluegunToolbox {
+  search: {
+    here: (file: string) => Boolean
+  }
+ }
 
-const command: GluegunCommand = {
+const command: GluegunCommand<TContext> = {
   name: 'create-md',
   run: async toolbox => {
-    const { print, prompt, template: {generate}, parameters, getTemplate, selectSections, filesystem } = toolbox
+    const { print, prompt, template: {generate}, parameters, getTemplate, filesystem, search } = toolbox
     
+    print.info(search.here('sapo.txt'))
+
     const { first='readme', options } = parameters
 
     let { ext='.md', name=''} = options
@@ -61,7 +63,7 @@ const command: GluegunCommand = {
     }
 
     // get selected sections from input
-    let { selectedSections } = await selectSections(templateInfo.sections)
+    let { selectedSections } = await prompt.ask(forSections(templateInfo.sections))
     if (!(selectedSections.length > 0)) selectedSections = templateInfo.defaultSections
 
     // for each section, get props from input
@@ -71,18 +73,6 @@ const command: GluegunCommand = {
       
       if (!sectionProps) continue // skip questionaire if no props needed
       if (sectionProps.includes('sections')) throw new Error('sections cannot be a prop')
-
-      // const questions = sectionProps.map((prop: Prop) => ({
-      //   type: 'input',
-      //   name: prop.name,
-      //   message: `Section ${section} - ${prop.description || prop.name}`,
-      //   initial: () => {
-      //     if (!prop.default || !pkg) return
-      //     return prop.default
-      //       .split('.')
-      //       .reduce((prev, curr) => prev[curr], pkg)
-      //   } 
-      // }))
 
       const questions = forProps(sectionProps, pkg, section)
 
