@@ -1,5 +1,5 @@
 {
-  "sections": ["header", "about", "prerequisites", "contributing", "author", "license"],
+  "sections": ["header", "about", "features", "prerequisites", "contributing", "todo", "techs", "author", "license"],
   "defaultSections": ["header", "about", "contributing", "author", "license"],
   "props": {
     "header": [
@@ -13,6 +13,7 @@
       {"name": "homepage", "default": "homepage"},
       {"name": "long description"}
     ],
+    "features": [{ "name": "feats", "description": "List features (comma separated)" }],
     "contributing": [
       {"name":"github username", "default": "create_md.github_username"}, 
       {"name":"github repo name", "default": "create_md.github_repo"}
@@ -24,6 +25,8 @@
       {"name":"github username", "default": "create_md.github_username"}, 
       {"name": "twitter username"}, {"name": "linkedin username"}
     ],
+    "todo": [{ "name": "todos", "description": "Tasks to be done (comma separated)" }],
+    "techs": [{ "name": "techs", "description": "Main technologies used in the project (comma separated)" }],
     "prerequisites": [{"name": "node version"}, {"name": "npm version"}],
     "license": [
       {"name": "license", "default": "license"}, 
