@@ -1,6 +1,5 @@
 import { GluegunCommand, GluegunToolbox } from 'gluegun'
 import { forSections, forProps } from "../questions";
-import * as path from 'path'
 
 /**
  * --- Process ---
@@ -23,7 +22,9 @@ import * as path from 'path'
     fromTemplate: (template: any) => any
   },
   parse: {
-    fileExtension: (string) => string
+    fileExtension: (extension: string) => string
+    fileBaseName: (name: string) => string
+    fileName: (name: string, extension?: string) => string
   }
  }
 
@@ -34,23 +35,25 @@ const command: GluegunCommand<TContext> = {
     
     const { first='readme', options } = parameters
     
-    let { ext='.md', name=''} = options
-    ext = parse.fileExtension(ext)
+    const { ext='.md', name=first} = options
     
-    const filename = name ? `${name}${ext}` : path.parse(`${first}${ext}`).base
+    const filename = parse.fileName(name, ext)
+
     const target = `./${filename}` // output
-    // if (search.here(target)) {
-    //   const wantOverwrite = await prompt.confirm('Overwrite?', false)
-    //   if (!wantOverwrite) return
-    // } 
+
+    if (search.here(target)) {
+      const wantOverwrite = await prompt.confirm('Overwrite?', false)
+      if (!wantOverwrite) return print.info('Hint: You can pass another file name as options: --name=foo')
+      
+    } 
     
-    const pkg = search.forData()
+    const inferredProjectData = search.forData()
 
     // get template info: props, sections...
     const templateInfo = extractData.fromTemplate({name: first})
     if (templateInfo.isFlat) {
 
-      const questions = forProps(templateInfo.props, pkg)
+      const questions = forProps(templateInfo.props, inferredProjectData)
       const props = await prompt.ask(questions)
       return generate({ template: `${first}/index.ejs`, target, props })
       .then(() => {
@@ -77,7 +80,7 @@ const command: GluegunCommand<TContext> = {
       if (!sectionProps) continue // skip questionaire if no props needed
       if (sectionProps.includes('sections')) throw new Error('sections cannot be a prop')
 
-      const questions = forProps(sectionProps, pkg, section)
+      const questions = forProps(sectionProps, inferredProjectData, section)
 
       const { selectedSections, ...rest} = await prompt.ask(questions)
       props[section] = rest

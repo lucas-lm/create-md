@@ -1,4 +1,5 @@
 import { GluegunToolbox } from 'gluegun'
+import * as path from 'path'
 
 interface Template {
   name: string
@@ -47,8 +48,19 @@ module.exports = (toolbox: GluegunToolbox) => {
 
   toolbox.parse = {
     fileExtension(extension?: string) {
-      if (!extension) return null
+      if (!extension) return ''
       return extension[0] && extension[0] !== '.' ? `.${extension}` : extension
+    },
+
+    fileBaseName(name: string) {
+      return name
+    },
+
+    fileName(name: string, extension?: string) {
+      const { parse } = toolbox
+      const baseName = parse.fileBaseName(name)
+      const ext = parse.fileExtension(extension)
+      return path.parse(`${baseName}${ext}`).base
     }
   }
 
