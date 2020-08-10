@@ -1,5 +1,5 @@
 {
-  "sections": ["header", "about", "features", "prerequisites", "contributing", "todo", "techs", "author", "license"],
+  "sections": ["header", "about", "features", "requirements", "contributing", "todo", "techs", "author", "license"],
   "defaultSections": ["header", "about", "contributing", "author", "license"],
   "props": {
     "header": [
@@ -27,7 +27,7 @@
     ],
     "todo": [{ "name": "todos", "description": "Tasks to be done (comma separated)" }],
     "techs": [{ "name": "techs", "description": "Main technologies used in the project (comma separated)" }],
-    "prerequisites": [{"name": "node version"}, {"name": "npm version"}],
+    "requirements": [{"name": "node version"}, {"name": "npm version"}],
     "license": [
       {"name": "license", "default": "license"}, 
       {"name": "author name", "default": "author.name"}
