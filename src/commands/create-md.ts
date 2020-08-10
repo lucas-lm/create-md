@@ -48,6 +48,8 @@ const command: GluegunCommand<TContext> = {
     } 
     
     const inferredProjectData: ProjectData = await extractData.fromProject()
+    // TODO: default questions and specific questions - will avoid repeat questions
+    // 
     const templateInfo = extractData.fromTemplate({name: first}) // get template info: props, sections...
 
     if (templateInfo.isFlat) {
