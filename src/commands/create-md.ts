@@ -1,5 +1,6 @@
 import { GluegunCommand, GluegunToolbox } from 'gluegun'
 import { forSections, forProps } from "../questions";
+import { ProjectData } from '../types';
 
 /**
  * --- Process ---
@@ -20,6 +21,7 @@ import { forSections, forProps } from "../questions";
   },
   extractData: {
     fromTemplate: (template: any) => any
+    fromProject: () => any
   },
   parse: {
     fileExtension: (extension: string) => string
@@ -34,7 +36,6 @@ const command: GluegunCommand<TContext> = {
     const { print, prompt, template: {generate}, parameters, search, extractData, parse } = toolbox
     
     const { first='readme', options } = parameters
-    
     const { ext='.md', name=first} = options
     
     const filename = parse.fileName(name, ext)
@@ -43,29 +44,26 @@ const command: GluegunCommand<TContext> = {
 
     if (search.here(target)) {
       const wantOverwrite = await prompt.confirm('Overwrite?', false)
-      if (!wantOverwrite) return print.info('Hint: You can pass another file name as options: --name=foo')
-      
+      if (!wantOverwrite) return print.info('Hint: You can pass another file name in options: --name=foo')
     } 
     
-    const inferredProjectData = search.forData()
+    const inferredProjectData: ProjectData = await extractData.fromProject()
+    const templateInfo = extractData.fromTemplate({name: first}) // get template info: props, sections...
 
-    // get template info: props, sections...
-    const templateInfo = extractData.fromTemplate({name: first})
     if (templateInfo.isFlat) {
-
       const questions = forProps(templateInfo.props, inferredProjectData)
       const props = await prompt.ask(questions)
       return generate({ template: `${first}/index.ejs`, target, props })
-      .then(() => {
-        print.success(`DONE Created ${filename}`)
-      })
-      .catch(error => {
-        if (error.message.match('template not found')) {
-          print.error(`FAILED There is no template for ${first}`)
-        } else {
-          throw error
-        }
-      })
+        .then(() => {
+          print.success(`DONE Created ${filename}`)
+        })
+        .catch(error => {
+          if (error.message.match('template not found')) {
+            print.error(`FAILED There is no template for ${first}`)
+          } else {
+            throw error
+          }
+        })
     }
 
     // get selected sections from input

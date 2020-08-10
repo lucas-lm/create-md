@@ -1,5 +1,7 @@
 import { GluegunToolbox } from 'gluegun'
 import * as path from 'path'
+import { ProjectData } from '../types'
+import { serializeProjectData } from "../toolbox";
 
 interface Template {
   name: string
@@ -21,7 +23,7 @@ module.exports = (toolbox: GluegunToolbox) => {
     forData() {
       const { filesystem } = toolbox
       try {
-        return require(filesystem.resolve(filesystem.cwd(), 'package.json'))
+        return require(filesystem.resolve(filesystem.cwd(), 'package.json')) as ProjectData
       } catch (error) {
 
         return null
@@ -43,6 +45,16 @@ module.exports = (toolbox: GluegunToolbox) => {
       if (!templateDir) throw new Error('Template not found')
       const templateMetadata = require(templateDir) as TemplateMetadata
       return templateMetadata
+    },
+
+    async fromProject() {
+      const { filesystem: { cwd, resolve } } = toolbox
+      try {
+        const pkg = await import(resolve(cwd(), 'package.json'))
+        return serializeProjectData(pkg)
+      } catch (error) {
+        return null
+      }
     }
   }
 
