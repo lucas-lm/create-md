@@ -11,6 +11,9 @@
     "type": "git",
     "url": "https://github.com/lucas-lm/create-md.git"
   },
+  "bugs": {
+    "url": "https://github.com/lucas-lm/create-md/issues"
+  },
   "create_md": {
     "github_username": "lucas-lm",
     "github_repo": "create-md"
