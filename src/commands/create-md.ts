@@ -27,26 +27,30 @@ import { ProjectData } from '../types';
     fileExtension: (extension: string) => string
     fileBaseName: (name: string) => string
     fileName: (name: string, extension?: string) => string
+    dirName: (dir: string) => string
   }
  }
 
 const command: GluegunCommand<TContext> = {
   name: 'create-md',
   run: async toolbox => {
-    const { print, prompt, template: {generate}, parameters, search, extractData, parse } = toolbox
+    const { print, prompt, template: {generate}, parameters, extractData, parse, filesystem: { resolve, exists } } = toolbox
     const { first='readme', options } = parameters
-    const { ext='.md', name } = options
-
-    const templateInfo = extractData.fromTemplate({name: first}) // get template info: props, sections...
+    const { name, ext='.md', outDir='.' } = options
+    
+    const templateInfo = await extractData.fromTemplate({name: first}) // get template info: props, sections...
     const baseName = name || templateInfo.name
     
+    const dirname = parse.dirName(outDir)
     const filename = parse.fileName(baseName, ext)
-    const target = `./${filename}` // output
+    const target = resolve(dirname, filename) // output file
     
     const inferredProjectData: ProjectData = await extractData.fromProject()
-    // TODO: default questions and specific questions - will avoid repeat questions
 
-    if (search.here(target)) {
+    // TODO: default questions and specific questions - will avoid repeat questions
+    const alreadyExists = exists(resolve(target))
+
+    if (alreadyExists === 'file') {
       const wantOverwrite = await prompt.confirm('Overwrite?', false)
       if (!wantOverwrite) return print.info('Hint: You can pass another file name in options: --name=foo')
     } 
@@ -85,9 +89,11 @@ const command: GluegunCommand<TContext> = {
       props[section] = rest
     }
 
+    // append sections and template info to props
     props['sections'] = selectedSections
     props['template'] = first
 
+    // Finally create the file
     generate({ template: 'index.ejs', target, props })
       .then(() => {
         print.success(`DONE Created ${filename}`)

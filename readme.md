@@ -104,12 +104,14 @@ yarn create md license --ext=
 
 ## :bomb: Next steps
 
-- [ ] Refactor the basecode
+- [x] Refactor the basecode
+- [x] Feature: ask if user want to overwrite files if already exists
+- [ ] Feature: Auto generate table of contents
 - [ ] Write tests
-- [ ] Feature: ask if user want to overwrite files if already exists
 - [ ] Feature: take custom templates as argument
 - [ ] Create more templates
 - [ ] Feature: flag `--all` must create default markdowns (readme, license, issues etc.) in batch
+- [ ] Allow .create-md (maybe .cmrc or .createmdrc, who knows...) config file
 
 ## :star2: Contributing
 

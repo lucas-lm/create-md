@@ -27,19 +27,19 @@ module.exports = (toolbox: GluegunToolbox) => {
   }
 
   toolbox.extractData = {
-    fromTemplate(template: Template) {
+    async fromTemplate(template: Template) {
       const { search } = toolbox
 
       const templateDir = search.forTemplate(template)
       if (!templateDir) throw new Error('Template not found')
-      const templateMetadata = require(templateDir) as TemplateMetadata
+      const templateMetadata = await import(templateDir) as TemplateMetadata
       return templateMetadata
     },
 
     async fromProject() {
-      const { filesystem: { cwd, resolve } } = toolbox
+      const { filesystem: { resolve } } = toolbox
       try {
-        const pkg = await import(resolve(cwd(), 'package.json'))
+        const pkg = await import(resolve('package.json'))
         return serializeProjectData(pkg)
       } catch (error) {
         return null
@@ -62,6 +62,12 @@ module.exports = (toolbox: GluegunToolbox) => {
       const baseName = parse.fileBaseName(name)
       const ext = parse.fileExtension(extension)
       return path.parse(`${baseName}${ext}`).base
+    },
+
+    dirName(dir: string) {
+      const { filesystem: { resolve, homedir } } = toolbox
+      if (dir.slice(0, 2) === '~/') return resolve(homedir(), dir.slice(2))
+      return resolve(dir)
     }
   }
 

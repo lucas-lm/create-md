@@ -26,8 +26,6 @@ const getGithub: (pkg: PackageData) => GitHub = pkg => {
   if (!url.match(githubURL)) return null
   const strippedURL = url.replace('git+', '').replace(/\.git.*/i, '')
   const [ username, repo_name ] = strippedURL.replace(githubURL, '').split('/')
-  console.log(strippedURL)
-  console.log('username: ', username, 'repo: ', repo_name)
   return { username, repo_name }
 }
 
