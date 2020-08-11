@@ -50,6 +50,9 @@ const command: GluegunCommand<TContext> = {
     // TODO: default questions and specific questions - will avoid repeat questions
     const alreadyExists = exists(resolve(target))
 
+    if (alreadyExists && alreadyExists !== 'file') 
+      return print.error(`ERROR: Name conflict. There is already something named ${filename} here`)
+
     if (alreadyExists === 'file') {
       const wantOverwrite = await prompt.confirm('Overwrite?', false)
       if (!wantOverwrite) return print.info('Hint: You can pass another file name in options: --name=foo')
