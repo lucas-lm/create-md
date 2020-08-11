@@ -1,12 +1,12 @@
 import { GluegunCommand, GluegunToolbox } from 'gluegun'
-import { forSections, forProps } from "../questions";
-import { ProjectData } from '../types';
+import { forSections, forProps } from "../questions"
+import { ProjectData } from '../types'
 
 /**
- * --- Process ---
+ * --- Process Flow ---
  * 1. Confirm overwrites if needed
  * 2. Set name, extension and output directory path
- * 3. Search for project info
+ * 3. Extract project info
  * 4. Build questions based on given template 
  * 5. Ask user questions
  * 6. Generate final file
@@ -37,6 +37,7 @@ const command: GluegunCommand<TContext> = {
     const { name, ext='.md', outDir='.' } = options
     
     const templateInfo = await extractData.fromTemplate({name: first}) // get template info: props, sections...
+    if (!templateInfo) return print.error(`ERROR ${first} is not a valid template`)
     const baseName = name || templateInfo.name
     
     const dirname = parse.dirName(outDir)
@@ -59,6 +60,7 @@ const command: GluegunCommand<TContext> = {
     if (templateInfo.isFlat) {
       const questions = forProps(templateInfo.props, inferredProjectData)
       const props = await prompt.ask(questions)
+
       return generate({ template: `${first}/index.ejs`, target, props })
         .then(() => {
           print.success(`DONE Created ${filename}`)

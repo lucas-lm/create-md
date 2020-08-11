@@ -26,7 +26,7 @@ module.exports = (toolbox: GluegunToolbox) => {
       const { search } = toolbox
 
       const templateDir = search.forTemplate(template)
-      if (!templateDir) throw new Error('Template not found')
+      if (!templateDir) return null
       const templateMetadata = await import(templateDir) as TemplateMetadata
       return templateMetadata
     },
