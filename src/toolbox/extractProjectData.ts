@@ -1,4 +1,6 @@
-import { PackageData, Author, ProjectData, Repo, Requirements, Scripts } from "../types"
+import { PackageData, Author, ProjectData, Repo, Requirements, Scripts, GitHub } from "../types"
+
+const githubURL = 'https://github.com/'
 
 const serializeAuthor = (author: Author) => typeof author === 'string' ? { name: author } : author
 
@@ -19,11 +21,22 @@ const getRepo: (pkg: PackageData) => Repo = pkg => {
   return serializeRepo(repository)
 }
 
+const getGithub: (pkg: PackageData) => GitHub = pkg => {
+  const { url } = getRepo(pkg)
+  if (!url.match(githubURL)) return null
+  const strippedURL = url.replace('git+', '').replace(/\.git.*/i, '')
+  const [ username, repo_name ] = strippedURL.replace(githubURL, '').split('/')
+  console.log(strippedURL)
+  console.log('username: ', username, 'repo: ', repo_name)
+  return { username, repo_name }
+}
+
 export const serializeProjectData = (packageData: PackageData) => {
   
   const author = getAuthor(packageData)
   const contributors = getContributors(packageData)
   const repo = getRepo(packageData)
+  const github = getGithub(packageData)
   const { engines: requirements = null }: Requirements = packageData
   const { scripts=null }: Scripts = packageData
   
@@ -36,6 +49,7 @@ export const serializeProjectData = (packageData: PackageData) => {
     repo,
     requirements,
     scripts,
+    github,
     ...overwrites
   }
 

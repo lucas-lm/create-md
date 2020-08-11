@@ -28,6 +28,11 @@ export interface Scripts {
   [key: string]: string
 }
 
+export interface GitHub {
+  username: string
+  repo_name?: string
+}
+
 export interface ProjectData {
   name?: string
   description?: string
@@ -38,6 +43,7 @@ export interface ProjectData {
   license?: string
   requirements?: Requirements | null
   scripts?: Scripts | null
+  github?: GitHub | null
 }
 
 export interface PackageData extends PackageJSON {

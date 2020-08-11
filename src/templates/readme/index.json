@@ -4,8 +4,8 @@
   "defaultSections": ["header", "about", "contributing", "author", "license"],
   "props": {
     "header": [
-      { "name": "github username", "default": "create_md.github_username"}, 
-      { "name": "github repo name", "default": "create_md.github_repo"}, 
+      { "name": "github username", "default": "github.username"}, 
+      { "name": "github repo name", "default": "github.repo_name"}, 
       { "name": "title", "default": "name"}, 
       { "name": "headline", "default": "description"},
       { "name": "banner url", "description": "banner or logo url"}
@@ -16,14 +16,14 @@
     ],
     "features": [{ "name": "feats", "description": "List features (comma separated)" }],
     "contributing": [
-      {"name":"github username", "default": "create_md.github_username"}, 
-      {"name":"github repo name", "default": "create_md.github_repo"}
+      {"name":"github username", "default": "github.username"}, 
+      {"name":"github repo name", "default": "github.repo_name"}
     ],
     "author": [
       {"name": "author name", "default": "author.name"}, 
       {"name":"author website", "default": "author.url"}, 
       {"name":"author email", "default": "author.email"}, 
-      {"name":"github username", "default": "create_md.github_username"}, 
+      {"name":"github username", "default": "github.username"}, 
       {"name": "twitter username"}, {"name": "linkedin username"}
     ],
     "todo": [{ "name": "todos", "description": "Tasks to be done (comma separated)" }],
