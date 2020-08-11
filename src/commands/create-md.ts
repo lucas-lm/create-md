@@ -34,23 +34,22 @@ const command: GluegunCommand<TContext> = {
   name: 'create-md',
   run: async toolbox => {
     const { print, prompt, template: {generate}, parameters, search, extractData, parse } = toolbox
-    
     const { first='readme', options } = parameters
-    const { ext='.md', name=first} = options
-    
-    const filename = parse.fileName(name, ext)
+    const { ext='.md', name } = options
 
+    const templateInfo = extractData.fromTemplate({name: first}) // get template info: props, sections...
+    const baseName = name || templateInfo.name
+    
+    const filename = parse.fileName(baseName, ext)
     const target = `./${filename}` // output
+    
+    const inferredProjectData: ProjectData = await extractData.fromProject()
+    // TODO: default questions and specific questions - will avoid repeat questions
 
     if (search.here(target)) {
       const wantOverwrite = await prompt.confirm('Overwrite?', false)
       if (!wantOverwrite) return print.info('Hint: You can pass another file name in options: --name=foo')
     } 
-    
-    const inferredProjectData: ProjectData = await extractData.fromProject()
-    // TODO: default questions and specific questions - will avoid repeat questions
-    // 
-    const templateInfo = extractData.fromTemplate({name: first}) // get template info: props, sections...
 
     if (templateInfo.isFlat) {
       const questions = forProps(templateInfo.props, inferredProjectData)

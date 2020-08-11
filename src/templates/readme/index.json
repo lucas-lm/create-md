@@ -1,4 +1,5 @@
 {
+  "name": "readme",
   "sections": ["header", "about", "features", "requirements", "contributing", "todo", "techs", "author", "license"],
   "defaultSections": ["header", "about", "contributing", "author", "license"],
   "props": {
