@@ -50,7 +50,8 @@ module.exports = (toolbox: GluegunToolbox) => {
   toolbox.parse = {
     fileExtension(extension?: string) {
       if (!extension) return ''
-      return extension[0] && extension[0] !== '.' ? `.${extension}` : extension
+      const ext = extension.replace(/[^\w]|_/gi, '')
+      return `.${ext}`
     },
 
     fileBaseName(name: string) {
