@@ -1,0 +1,13 @@
+{
+  "isFlat": true,
+  "name": "readme",
+  "props": [
+    { "name": "name", "default": "author.name", "description": "Your full name" },
+    { "name": "intro", "default": "description", "description": "Introduce yourself" },
+    { "name": "email", "default": "author.email", "description": "Your email" },
+    { "name": "github username", "default": "github.username", "description": "Your github username" },
+    { "name": "linkedin username", "description": "Your linkedin username" },
+    { "name": "techs", "description": "Technologies you domain (comma separated)" },
+    { "name": "communities", "description": "Communities you have been part of (comma separated)" }
+  ]
+}
