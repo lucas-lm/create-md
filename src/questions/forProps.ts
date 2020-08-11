@@ -15,9 +15,13 @@ const forProps = (props: Prop[], pkg: any, section?: string) => {
     message: `${sectionLabel} - ${prop.description || prop.name}`,
     initial: () => {
       if (!prop.default || !pkg) return
-      return prop.default
-        .split('.')
-        .reduce((prev, curr) => prev[curr], pkg)
+      try {
+        return prop.default
+          .split('.')
+          .reduce((prev, curr) => prev[curr], pkg)
+      } catch (error) {
+        return 
+      }
     } 
   }))
 

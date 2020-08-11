@@ -1,0 +1,64 @@
+<% if (props['banner url']) { -%>
+  ![banner](<%= props['banner url'] -%>)
+
+<% } -%>
+# <%= props.title %>
+
+> <%= props.headline %>
+
+![GitHub last commit](https://img.shields.io/github/last-commit/<%= props['github username'] %>/<%- props['github repo name'] %>)
+![license](https://img.shields.io/github/license/<%= props['github username'] %>/<%- props['github repo name'] %>)
+![GitHub repo size](https://img.shields.io/github/repo-size/<%= props['github username'] %>/<%- props['github repo name'] %>)
+
+## :telescope: Overview
+
+<% if (props['homepage']) { -%>
+  [🏠 Homepage](<%= props['homepage'] -%>)
+<% } -%>
+<%= props['long description'] -%>
+
+<% if (props.techs) { -%>
+## :computer: Techs
+  
+<% props.techs.split(',').map(i => i.trim()).forEach(function(tech){ -%>
+- <%= tech %>
+<% }) -%>
+<% } -%>
+
+<% if (props.features) { -%>
+## :sparkles: Features
+  
+<% props.feats.split(',').map(i => i.trim()).forEach(function(feat){ -%>
+- <%= feat %>
+<% }) -%>
+<% } -%>
+
+<% if (props.todos) { -%>
+## :bomb: Next steps
+
+<% props.todos.split(',').map(i => i.trim()).forEach(function(todo){ -%>
+- [ ] <%= todo %>
+<% }) -%>
+<% } -%>
+
+## :star2: Contributing
+
+Contributions, issues and feature requests are welcome!
+
+- ⭐️ Star the project
+- 🐛 Find and report issues
+- 📥 Submit PRs to help solve issues or add features
+
+Feel free to check [issues page](https://github.com/<%= props['github username'] %>/<%= props['github repo name'] %>/issues). You can also take a look at the contributing guide.
+
+## :bow: Author
+
+**<%= props.name %>** 
+* Email: <%= props.email %>
+* GitHub: [@<%= props['github username'] %>](https://github.com/<%= props['github username'] %>)
+* LinkedIn: [@<%= props['linkedin username'] %>](https://linkedin.com/in/<%= props['linkedin username'] %>)
+
+## :books: License
+
+Copyright © 2020 <%= props.name %>
+This project is [MIT](license) licensed.

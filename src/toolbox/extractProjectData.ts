@@ -2,6 +2,14 @@ import { PackageData, Author, ProjectData, Repo, Requirements, Scripts, GitHub }
 
 const githubURL = 'https://github.com/'
 
+const removeNulls: (obj: Object) => Object = obj => {
+  const withoutNulls = {}
+  for (const k in obj) {
+    if (obj[k] !== null) withoutNulls[k] = obj[k]
+  }
+  return withoutNulls
+}
+
 const serializeAuthor = (author: Author) => typeof author === 'string' ? { name: author } : author
 
 const serializeRepo = (repo: Repo) => typeof repo === 'string' ? { url: repo } : repo
@@ -40,7 +48,7 @@ export const serializeProjectData = (packageData: PackageData) => {
   
   const overwrites: ProjectData = packageData['create-md']
 
-  const serialized = {
+  const serialized = removeNulls({
     ...packageData,
     author,
     contributors,
@@ -49,7 +57,7 @@ export const serializeProjectData = (packageData: PackageData) => {
     scripts,
     github,
     ...overwrites
-  }
+  })
 
   return serialized
 } // Type ProjectData

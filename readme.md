@@ -121,7 +121,7 @@ Contributions, issues and feature requests are welcome!
 - 🐛 Find and report issues
 - 📥 Submit PRs to help solve issues or add features
 
-Feel free to check [issues page](https://github.com//create-md/issues). You can also take a look at the contributing guide.
+Feel free to check [issues page](https://github.com/lucas-lm/create-md/issues). You can also take a look at the contributing guide.
 
 ## :bow: Author
 

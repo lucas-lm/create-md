@@ -1,0 +1,36 @@
+{
+  "name": "readme",
+  "sections": ["header", "overview", "features", "contributing", "techs", "todo", "author", "license"],
+  "defaultSections": ["header", "overview", "contributing", "author", "license"],
+  "props": {
+    "header": [
+      { "name": "github username", "default": "github.username"}, 
+      { "name": "github repo name", "default": "github.repo_name"}, 
+      { "name": "title", "default": "name"}, 
+      { "name": "headline", "default": "description"},
+      { "name": "banner url", "description": "banner or logo url"}
+    ],
+    "overview": [
+      {"name": "homepage", "default": "homepage"},
+      {"name": "long description"}
+    ],
+    "features": [{ "name": "feats", "description": "List features (comma separated)" }],
+    "contributing": [
+      {"name":"github username", "default": "github.username"}, 
+      {"name":"github repo name", "default": "github.repo_name"}
+    ],
+    "author": [
+      {"name": "author name", "default": "author.name"}, 
+      {"name":"author website", "default": "author.url"}, 
+      {"name":"author email", "default": "author.email"}, 
+      {"name":"github username", "default": "github.username"}, 
+      {"name": "twitter username"}, {"name": "linkedin username"}
+    ],
+    "todo": [{ "name": "todos", "description": "Tasks to be done (comma separated)" }],
+    "techs": [{ "name": "techs", "description": "Main technologies used in the project (comma separated)" }],
+    "license": [
+      {"name": "license", "default": "license"}, 
+      {"name": "author name", "default": "author.name"}
+    ]
+  }
+}
