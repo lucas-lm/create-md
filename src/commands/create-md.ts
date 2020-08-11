@@ -15,8 +15,6 @@ import { ProjectData } from '../types';
 
  interface TContext extends GluegunToolbox {
   search: {
-    here: (file: string) => Boolean
-    forData: () => any
     forTemplate: (template: any) => any
   },
   extractData: {

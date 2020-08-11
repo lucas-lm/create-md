@@ -14,11 +14,6 @@ interface TemplateMetadata {
 
 module.exports = (toolbox: GluegunToolbox) => {
   toolbox.search = {
-    here(file: string) {
-      const { filesystem } = toolbox
-      return filesystem.exists(filesystem.resolve(filesystem.cwd(), file))
-    },
-
     forTemplate({name}: Template) {
       const { filesystem } = toolbox
       const templateDir = filesystem.resolve(__dirname, '..', 'templates', name)
