@@ -54,7 +54,7 @@ module.exports = (toolbox: GluegunToolbox) => {
     },
 
     fileBaseName(name: string) {
-      return name
+      return name.replace(/\\|\//g, '-')
     },
 
     fileName(name: string, extension?: string) {
