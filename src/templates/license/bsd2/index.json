@@ -1,0 +1,5 @@
+{
+  "isFlat": true,
+  "name": "license",
+  "props": [{"name": "name", "default": "author.name", "description": "Author full name"}]
+}
