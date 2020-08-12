@@ -4,9 +4,10 @@ import { ProjectData } from '../types'
 
 /**
  * --- Process Flow ---
- * 1. Confirm overwrites if needed
- * 2. Set name, extension and output directory path
- * 3. Extract project info
+ * 1. Load the template
+ * 2. Parse and serialize output config
+ * 3. Confirm overwrites if needed
+ * 4. Extract project info
  * 4. Build questions based on given template 
  * 5. Ask user questions
  * 6. Generate final file
@@ -35,27 +36,39 @@ const command: GluegunCommand<TContext> = {
     const { print, prompt, template: {generate}, parameters, extractData, parse, filesystem: { resolve, exists } } = toolbox
     const { first='readme', options } = parameters
     const { name, ext='.md', outDir='.' } = options
-    
+
+    const spinner = print.spin('Loading template')
+
     const templateInfo = await extractData.fromTemplate({name: first}) // get template info: props, sections...
-    if (!templateInfo) return print.error(`ERROR ${first} is not a valid template`)
-    const baseName = name || templateInfo.name
+    if (!templateInfo) return spinner.fail(`ERROR ${first} is not a valid template`)
+    else spinner.succeed('Template loaded successfully')
     
+    const baseName = name || templateInfo.name
     const dirname = parse.dirName(outDir)
     const filename = parse.fileName(baseName, ext)
     const target = resolve(dirname, filename) // output file
     
-    const inferredProjectData: ProjectData = await extractData.fromProject()
-
-    // TODO: default questions and specific questions - will avoid repeat questions
     const alreadyExists = exists(resolve(target))
-
+    
     if (alreadyExists && alreadyExists !== 'file') 
       return print.error(`ERROR: Name conflict. There is already something named ${filename} here`)
 
     if (alreadyExists === 'file') {
-      const wantOverwrite = await prompt.confirm('Overwrite?', false)
+      print.warning(`WARNING: There is already a file named ${filename} in the output folder`)
+      const wantOverwrite = await prompt.confirm(`Do you want to OVERWRITE ${filename} ??`, false)
       if (!wantOverwrite) return print.info('Hint: You can pass another file name in options: --name=foo')
     } 
+
+    spinner.start('Collecting project information')
+    const inferredProjectData: ProjectData = await extractData.fromProject()
+    if (inferredProjectData) {
+      spinner.succeed('Information collected successfully')
+    } else {
+      spinner.warn('Fail collecting project information. Predictions will not be available!')
+      print.info('You may be running on a folder with no package.json')
+      print.info('Learn more on https://github.com/lucas-lm/create-md')
+    }
+    // TODO: default questions and specific questions - will avoid repeat questions in modular templates
 
     if (templateInfo.isFlat) {
       const questions = forProps(templateInfo.props, inferredProjectData)

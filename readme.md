@@ -12,19 +12,19 @@
 
 - [:information_desk_person: Create Markdown](#information_desk_person-create-markdown)
 - [:pushpin: Table of Contents](#pushpin-table-of-contents)
-  - [:question: About](#question-about)
+  - [:telescope: Overview](#telescope-overview)
     - [Why did I make this?](#why-did-i-make-this)
-  - [:eyes: Prerequisites](#eyes-prerequisites)
+  - [:eyes: Requirements](#eyes-requirements)
   - [:zap: Quick start](#zap-quick-start)
-  - [:sparkles: Usage](#sparkles-usage)
+  - [:tada: Usage](#tada-usage)
     - [Examples](#examples)
-  - [:rocket: Features](#rocket-features)
+  - [:sparkles: Features](#sparkles-features)
   - [:bomb: Next steps](#bomb-next-steps)
   - [:star2: Contributing](#star2-contributing)
-  - [:bow: Author](#bow-author)
+  - [:octocat: Author](#octocat-author)
   - [:books: License](#books-license)
 
-## :question: About
+## :telescope: Overview
 
 This simple CLI helps you to bootstrap a nice readme and licenses from the scratch.
 
@@ -35,7 +35,7 @@ This simple CLI helps you to bootstrap a nice readme and licenses from the scrat
 Creating nice readmes, license and other docs for applications can be really boring, but it is important to make your project more understandable. In order to make this task easier, I create this CLI to automate the process of bootstrapping my readme and some other docs like licenses and issues templates.
 
 
-## :eyes: Prerequisites
+## :eyes: Requirements
 
 - Node.js
 - npm or yarn
@@ -69,7 +69,7 @@ Hint: A well filled package.json helps the CLI to infer some default answers. Lo
 
 ![package.json example](media/pkgexample.png)
 
-## :sparkles: Usage
+## :tada: Usage
 
 Call the CLI using `yarn create` or `npm init`. The create-md CLI take only one argument (template) and some options. If it is called with no argument, the default template will be used (readme). See below the list of available templates:
 
@@ -97,7 +97,7 @@ Creating a license named with no extension
 yarn create md license --ext=
 ```
 
-## :rocket: Features
+## :sparkles: Features
 
 - Generate md files
 - Answer inference
@@ -124,7 +124,7 @@ Contributions, issues and feature requests are welcome!
 
 Feel free to check [issues page](https://github.com/lucas-lm/create-md/issues). You can also take a look at the contributing guide.
 
-## :bow: Author
+## :octocat: Author
 
 **Lucas Miranda** 
 * Email: lucas-m@outlook.com

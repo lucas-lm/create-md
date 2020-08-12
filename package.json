@@ -11,6 +11,7 @@
     "type": "git",
     "url": "https://github.com/lucas-lm/create-md.git"
   },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/lucas-lm/create-md/issues"
   },
@@ -34,7 +35,6 @@
     "readme.md",
     "bin"
   ],
-  "license": "MIT",
   "dependencies": {
     "gluegun": "latest"
   },
