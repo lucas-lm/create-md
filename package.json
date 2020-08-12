@@ -1,14 +1,14 @@
 {
   "name": "create-md",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Create docs with a simple command",
   "author": {
     "email": "lucas-m@outlook.com",
     "name": "Lucas Miranda",
     "url": "https://lucas-lm.github.io"
   },
-  "publishConfig": { 
-    "registry": "https://npm.pkg.github.com/" 
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   },
   "repository": {
     "type": "git",
