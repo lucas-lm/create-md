@@ -1,33 +1,20 @@
 {
-  "sections": ["header", "about", "prerequisites", "contributing", "author", "license"],
-  "defaultSections": ["header", "about", "contributing", "author", "license"],
-  "props": {
-    "header": [
-      { "name": "github username", "default": "create_md.github_username"}, 
-      { "name": "github repo name", "default": "create_md.github_repo"}, 
-      { "name": "title", "default": "name"}, 
-      { "name": "headline", "default": "description"},
-      { "name": "banner url"}
-    ],
-    "about": [
-      {"name": "homepage", "default": "homepage"},
-      {"name": "long description"}
-    ],
-    "contributing": [
-      {"name":"github username", "default": "create_md.github_username"}, 
-      {"name":"github repo name", "default": "create_md.github_repo"}
-    ],
-    "author": [
-      {"name": "author name", "default": "author.name"}, 
-      {"name":"author website", "default": "author.url"}, 
-      {"name":"author email", "default": "author.email"}, 
-      {"name":"github username", "default": "create_md.github_username"}, 
-      {"name": "twitter username"}, {"name": "linkedin username"}
-    ],
-    "prerequisites": [{"name": "node version"}, {"name": "npm version"}],
-    "license": [
-      {"name": "license", "default": "license"}, 
-      {"name": "author name", "default": "author.name"}
-    ]
-  }
+  "isFlat": true,
+  "name": "readme",
+  "props": [
+    { "name": "name", "default": "author.name", "description": "Author full name" },
+    { "name": "email", "default": "author.email", "description": "Author email" },
+    { "name": "title", "default": "name"}, 
+    { "name": "headline", "default": "description"},
+    { "name": "banner url", "description": "banner or logo url"},
+    { "name": "homepage", "default": "homepage", "description": "Project homepage" },
+    { "name": "long description" },
+    { "name": "github username", "default": "github.username", "description": "Your github username" },
+    { "name": "github repo name", "default": "github.repo_name", "description": "Github repo name of this project" },
+    { "name": "linkedin username", "description": "Your linkedin username" },
+    { "name": "techs", "description": "Main technologies used in the project (comma separated)" },
+    { "name": "feats", "description": "List features (comma separated)" },
+    { "name": "todos", "description": "Next steps or tasks to be done (comma separated)" },
+    { "name": "license", "default": "license", "description": "License" }
+  ]
 }

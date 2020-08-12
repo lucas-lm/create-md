@@ -1,6 +1,6 @@
 {
   "name": "create-md",
-  "version": "0.0.5",
+  "version": "1.1.0",
   "description": "Create docs with a simple command",
   "author": {
     "email": "lucas-m@outlook.com",
@@ -11,9 +11,9 @@
     "type": "git",
     "url": "https://github.com/lucas-lm/create-md.git"
   },
-  "create_md": {
-    "github_username": "lucas-lm",
-    "github_repo": "create-md"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lucas-lm/create-md/issues"
   },
   "keywords": [
     "CLI",
@@ -35,7 +35,6 @@
     "readme.md",
     "bin"
   ],
-  "license": "MIT",
   "dependencies": {
     "gluegun": "latest"
   },

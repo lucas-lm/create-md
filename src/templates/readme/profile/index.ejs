@@ -1,0 +1,42 @@
+<h2> Hello! I am <%= props.name %> <img src="https://raw.githubusercontent.com/ABSphreak/ABSphreak/master/gifs/Hi.gif" width="30px"></h2>
+
+<img align='right' src='https://user-images.githubusercontent.com/5713670/87202985-820dcb80-c2b6-11ea-9f56-7ec461c497c3.gif' width='200"'>
+
+[![Github Badge](https://img.shields.io/badge/GitHub--000?style=social&logo=Github&logoColor=black&link=https://github.com/<%= props['github username'] %>)](https://github.com/<%= props['github username'] %>)
+[![Linkedin Badge](https://img.shields.io/badge/LinkedIn--000?style=social&logo=Linkedin&logoColor=0077B5&link=https://www.linkedin.com/in/<%= props['linkedin username'] %>/)](https://www.linkedin.com/in/<%= props['linkedin username'] %>/)
+[![Email Badge](https://img.shields.io/badge/email--000?style=social&logo=gmail&logoColor=D14836&link=mailto:<%= props.email %>)](mailto:<%= props.email %>)
+
+<%= props.intro %>
+
+<p align='center'>
+  <% if (props.communities) { -%><a href="#dancers-communities">Communities</a>
+  ·<% } %>
+  <% if (props.techs) { -%><a href="#computer-technologies">Technologies</a>
+  ·<% } %>
+  <% if (props['github username']) { -%><a href="#chart-github-stats">GitHub Stats</a><% } %>
+</p>
+
+<% if (props.communities) { -%>
+## :dancers: Communities
+
+You will find me on these lovely communities:
+<% props.communities.split(',').map(i => i.trim()).forEach(function(community){ -%>
+- <%= community %>
+<% }) -%>
+<% } -%>
+
+<% if (props.techs) { -%>
+## :computer: Technologies
+
+My expertises and interests:
+<% props.techs.split(',').map(i => i.trim()).forEach(function(tech){ -%>
+- <%= tech %>
+<% }) -%>
+<% } -%>
+
+<% if (props['github username']) { -%>
+## :chart: GitHub stats
+
+| <img src="https://github-readme-stats.vercel.app/api?username=<%= props['github username'] %>&show_icons=true" alt="github stats" height=200/> |  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=<%= props['github username'] %>&layout=compact" alt="top languages" height=200/> |
+|---|---|
+<% } -%>
