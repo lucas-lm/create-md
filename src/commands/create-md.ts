@@ -4,10 +4,10 @@ import { ProjectData } from '../types'
 
 /**
  * --- Process Flow ---
- * 1. Load the template
+ * 1. Try loading the template
  * 2. Parse and serialize output config
  * 3. Confirm overwrites if needed
- * 4. Extract project info
+ * 4. Try extracting project info
  * 4. Build questions based on given template 
  * 5. Ask user questions
  * 6. Generate final file

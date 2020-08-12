@@ -10,7 +10,7 @@
     { "name": "homepage", "default": "homepage", "description": "Project homepage" },
     { "name": "long description" },
     { "name": "github username", "default": "github.username", "description": "Your github username" },
-    { "name": "github repo name", "default": "github.repo_name", "description": "Name of the github repo for this project" },
+    { "name": "github repo name", "default": "github.repo_name", "description": "Github repo name of this project" },
     { "name": "linkedin username", "description": "Your linkedin username" },
     { "name": "techs", "description": "Main technologies used in the project (comma separated)" },
     { "name": "feats", "description": "List features (comma separated)" },
