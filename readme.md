@@ -8,9 +8,10 @@
 
 ![demo](media/demo.gif)
 
-**:pushpin: Table of Contents**
+# :pushpin: Table of Contents
 
 - [:information_desk_person: Create Markdown](#information_desk_person-create-markdown)
+- [:pushpin: Table of Contents](#pushpin-table-of-contents)
   - [:question: About](#question-about)
     - [Why did I make this?](#why-did-i-make-this)
   - [:eyes: Prerequisites](#eyes-prerequisites)
