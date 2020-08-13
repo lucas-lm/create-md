@@ -1,14 +1,15 @@
-# :information_desk_person: Create Markdown
+<p align='center'>
+  <img src='media/logo.png' alt='logo' height='128'/>
+</p>
+<h1 align='center'>:information_desk_person: Create Markdown</h1>
+<h3 align='center'>Create docs with a simple command</h3>
+<p align='center'>
+  <img alt='GitHub last commit' src='https://img.shields.io/github/last-commit/lucas-lm/create-md'>
+  <img alt="License" src="https://img.shields.io/github/license/lucas-lm/create-md">
+  <img src='https://img.shields.io/github/repo-size/lucas-lm/create-md' alt='GitHub repo size' />
+</p>
 
-> Create docs with a simple command
-
-![GitHub last commit](https://img.shields.io/github/last-commit/lucas-lm/create-md)
-![license](https://img.shields.io/github/license/lucas-lm/create-md)
-![GitHub repo size](https://img.shields.io/github/repo-size/lucas-lm/create-md)
-
-<p align='center'><img src='media/logo.png' alt='logo' height='128'/></p>
-
-# :pushpin: Table of Contents
+## :pushpin: Table of Contents
 
 - [:telescope: Overview](#telescope-overview)
   - [What can I do with create-md?](#what-can-i-do-with-create-md)
@@ -18,10 +19,13 @@
 - [:tada: Usage](#tada-usage)
   - [Examples](#examples)
 - [:sparkles: Features](#sparkles-features)
+- [:computer: Techs](#computer-techs)
 - [:bomb: Next steps](#bomb-next-steps)
 - [:star2: Contributing](#star2-contributing)
 - [:octocat: Author](#octocat-author)
 - [:closed_book: License](#closed_book-license)
+
+---
 
 ## :telescope: Overview
 
@@ -30,6 +34,7 @@ This simple CLI helps you to bootstrap a nice readme and licenses from the scrat
 > This readme was bootstrapped with create-md!
 
 See a short demo below:
+
 ![demo](media/demo.gif)
 
 ### What can I do with create-md?
@@ -49,7 +54,7 @@ Creating nice readmes, license and other docs for applications can be really bor
 ## :wrench: Requirements
 
 - [Node.js](https://nodejs.org)
-- [npm](https://npmjs.org) or [yarn](https://yarnpkg.com)
+- [npm](https://npmjs.com) or [yarn](https://yarnpkg.com)
 
 ## :zap: Quick start
 
@@ -87,6 +92,7 @@ Call the CLI using `yarn create md <args>` or `npm init md <args>`. The create-m
 - readme (default)
 - readme/profile (profile readme)
 - license (MIT license)
+- license/bsd2 (BSD2 license)
 
 The table below describes the options available currently.
 
@@ -118,6 +124,24 @@ See more examples in [docs/example](docs/example).
 - Answer inference
 - Modular templates
 
+## :computer: Techs
+
+Curious about technologies behind create-md? It is all about:
+
+- [NodeJS](https://nodejs.org) - A JavaScript runtime built on Chrome's V8 JavaScript engine
+- [TypeScript](https://typescriptlang.org) - Typed JavaScript at Any Scale
+- [Gluegun](https://github.com/infinitered/gluegun) - A delightful toolkit for building Node-based CLIs
+
+## :star2: Contributing
+
+Contributions, issues and feature requests are welcome!
+
+- ⭐️ Star the project
+- 🐛 Find and report issues
+- 📥 Submit PRs to help solve issues or add features
+
+Feel free to check [issues page](https://github.com/lucas-lm/create-md/issues). You can also take a look at the contributing guide.
+
 ## :bomb: Next steps
 
 - [x] Refactor the basecode
@@ -129,16 +153,6 @@ See more examples in [docs/example](docs/example).
 - [ ] Feature: flag `--all` must create default markdowns (readme, license, issues etc.) in batch
 - [ ] Feature: flag `--yes` must skip questionaire and get only default (inferred) answers
 - [ ] Allow .create-md (maybe .cmrc or .createmdrc, who knows...) config file
-
-## :star2: Contributing
-
-Contributions, issues and feature requests are welcome!
-
-- ⭐️ Star the project
-- 🐛 Find and report issues
-- 📥 Submit PRs to help solve issues or add features
-
-Feel free to check [issues page](https://github.com/lucas-lm/create-md/issues). You can also take a look at the contributing guide.
 
 ## :octocat: Author
 
