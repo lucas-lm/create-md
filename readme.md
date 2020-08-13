@@ -37,6 +37,12 @@ See a short demo below:
 
 ![demo](media/demo.gif)
 
+And this is how a profile readme created with create-md looks like:
+
+![profile readme example](media/profile-readme-example.gif)
+
+If you want to see more examples, take a look at [examples](docs/examples)
+
 ### What can I do with create-md?
 
 Using the create-md CLI you can:
@@ -116,7 +122,7 @@ Creating a license with txt extension
 yarn create md license --ext=txt
 ```
 
-See more examples in [docs/example](docs/example).
+See more examples in [docs/examples](docs/examples).
 
 ## :sparkles: Features
 
